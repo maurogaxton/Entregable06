@@ -66,11 +66,11 @@ class Producto{
 }
 
 //Creacion de instancias de la clase Productos
-const te1 = new Producto("Té negro La Virginia", "Argentina", "25 saquitos", 1500)
-const te2 = new Producto("Té verde Taragüi", "Argentina", "20 saquitos", 1850)
-const te3 = new Producto("Té Earl Grey Twinings", "Reino Unido", "25 saquitos", 6500)
-const te4 = new Producto("Té rojo Pu-Erh Inti Zen", "China", "15 saquitos", 4200)
-const te5 = new Producto("Té en hebras Chai Saint Gottard", "India", "50 gramos", 3800)
+const te1 = new Producto("Te negro La Virginia", "Argentina", "25 saquitos", 1500)
+const te2 = new Producto("Te verde Taragüi", "Argentina", "20 saquitos", 1850)
+const te3 = new Producto("Te Earl Grey Twinings", "Reino Unido", "25 saquitos", 6500)
+const te4 = new Producto("Te rojo Pu-Erh Inti Zen", "China", "15 saquitos", 4200)
+const te5 = new Producto("Te en hebras Chai Saint Gottard", "India", "50 gramos", 3800)
 
 //Se forma array a partir de las instancias
 const catalogo = [
@@ -85,17 +85,29 @@ const verCatalogo = () => {
     )
 }
 
-const filtrarNacionales = () => {
 //Filtrado de productos nacionales
+const filtrarNacionales = () => {
 const nacionales = catalogo.filter(catalogo => catalogo.origen == "Argentina")
 console.log(nacionales)
 }
 
-const filtrarImportados = () => {
 //Filtrado de productos importados
+const filtrarImportados = () => {
 const importados = catalogo.filter(catalogo => catalogo.origen !== "Argentina")
 console.log(importados)
 }
+
+//Búsqueda de producto por nombre, muestra el precio
+const buscarProducto = () => {
+let busqueda = prompt("Que producto está buscando?")
+const encontrado = catalogo.find(catalogo => catalogo.nombre == busqueda)
+if (encontrado) {
+    console.log("El precio del productos es: $" + (encontrado.precio))
+    } else {
+    console.log("El producto no se encuentra")
+    }
+}
+
 
 
 
@@ -147,9 +159,9 @@ while(pagar) {
 }
 
 //Menu principal
-let menuPrincipal = parseInt(prompt("Bienvenido! Ingrese \n1 para ver catalogo \n2 para pagar \n3 para ver productos nacionales \n4 para ver productos importados \n5 para salir"))
+let menuPrincipal = parseInt(prompt("Bienvenido! Ingrese \n1 para ver catalogo \n2 para pagar \n3 para ver productos nacionales \n4 para ver productos importados \n5 para buscar producto \n7 para salir"))
 
-while(menuPrincipal !== 5) {
+while(menuPrincipal !== 7) {
     switch(menuPrincipal) {
         case 1:
             verCatalogo()
@@ -163,8 +175,13 @@ while(menuPrincipal !== 5) {
         case 4:
             filtrarImportados()
             break
+        case 5:
+            buscarProducto()
+            break
+
+        
         default:
             alert("Opcion incorrecta")
     }
-    menuPrincipal = menuPrincipal = parseInt(prompt("Ingrese \n1 para ver catalogo \n2 para pagar \n3 para ver productos nacionales \n4 para ver productos importados \n5 para salir"))
+    menuPrincipal = parseInt(prompt("Ingrese \n1 para ver catalogo \n2 para pagar \n3 para ver productos nacionales \n4 para ver productos importados \n5 para buscar producto \n7 para salir"))
 }
