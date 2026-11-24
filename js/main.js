@@ -83,18 +83,14 @@ const te3 = new Producto("Té Earl Grey Twinings", "Reino Unido", "25 saquitos",
 const te4 = new Producto("Té rojo Pu-Erh Inti Zen", "China", "15 saquitos", 4200)
 const te5 = new Producto("Té en hebras Chai Saint Gottard", "India", "50 gramos", 3800)
 
-//Para ver Catalogo de productos, se aplican los metodos de Productos
+//Para ver Catalogo de productos, se forma array a partir de las instancias y se recorre con forEach
 const verCatalogo = () => {
-te1.verProductos()
-te1.sumarIva()
-te2.verProductos()
-te2.sumarIva()
-te3.verProductos()
-te3.sumarIva()
-te4.verProductos()
-te4.sumarIva()
-te5.verProductos()
-te5.sumarIva()
+    const catalogo = [
+        te1, te2, te3, te4, te5
+    ]
+    catalogo.forEach((elemento) =>
+    console.log(elemento.nombre + ", Precio: $ " + elemento.precio)
+    )
 }
 
 // Para elegir metodo de pago
