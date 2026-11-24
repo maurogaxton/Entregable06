@@ -62,18 +62,7 @@ class Producto{
         this.presentacion = presentacion,
         this.precio = precio
     }
-    verProductos = () => {
-    console.log("Producto: " + this.nombre)
-    console.log("Origen:  " + this.origen)
-    console.log("Presentacion: " + this.presentacion)
-    console.log("Precio: $ " + this.precio)
     
-    }
-    sumarIva = () => {
-    this.precio = this.precio*1.21
-    console.log("Precio mas IVA: $" + this.precio)
-
-    }
 }
 
 //Creacion de instancias de la clase Productos
@@ -83,15 +72,32 @@ const te3 = new Producto("Té Earl Grey Twinings", "Reino Unido", "25 saquitos",
 const te4 = new Producto("Té rojo Pu-Erh Inti Zen", "China", "15 saquitos", 4200)
 const te5 = new Producto("Té en hebras Chai Saint Gottard", "India", "50 gramos", 3800)
 
-//Para ver Catalogo de productos, se forma array a partir de las instancias y se recorre con forEach
-const verCatalogo = () => {
-    const catalogo = [
+//Se forma array a partir de las instancias
+const catalogo = [
         te1, te2, te3, te4, te5
     ]
+
+//Para ver Catalogo de productos,se recorre con forEach
+const verCatalogo = () => {
+    
     catalogo.forEach((elemento) =>
     console.log(elemento.nombre + ", Precio: $ " + elemento.precio)
     )
 }
+
+const filtrarNacionales = () => {
+//Filtrado de productos nacionales
+const nacionales = catalogo.filter(catalogo => catalogo.origen == "Argentina")
+console.log(nacionales)
+}
+
+const filtrarImportados = () => {
+//Filtrado de productos importados
+const importados = catalogo.filter(catalogo => catalogo.origen !== "Argentina")
+console.log(importados)
+}
+
+
 
 // Para elegir metodo de pago
 const pagarCompra = () => {
@@ -141,9 +147,9 @@ while(pagar) {
 }
 
 //Menu principal
-let menuPrincipal = parseInt(prompt("Bienvenido! Ingrese 1 para ver catalogo, 2 para pagar, 3 para salir"))
+let menuPrincipal = parseInt(prompt("Bienvenido! Ingrese \n1 para ver catalogo \n2 para pagar \n3 para ver productos nacionales \n4 para ver productos importados \n5 para salir"))
 
-while(menuPrincipal !== 3) {
+while(menuPrincipal !== 5) {
     switch(menuPrincipal) {
         case 1:
             verCatalogo()
@@ -151,9 +157,14 @@ while(menuPrincipal !== 3) {
         case 2:
             pagarCompra()
             break
-        
+        case 3:
+            filtrarNacionales()
+            break
+        case 4:
+            filtrarImportados()
+            break
         default:
             alert("Opcion incorrecta")
     }
-    menuPrincipal = menuPrincipal = parseInt(prompt("Ingrese 1 para ver catalogo, 2 para pagar, 3 para salir"))
+    menuPrincipal = menuPrincipal = parseInt(prompt("Ingrese \n1 para ver catalogo \n2 para pagar \n3 para ver productos nacionales \n4 para ver productos importados \n5 para salir"))
 }
