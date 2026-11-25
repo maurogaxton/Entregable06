@@ -13,17 +13,11 @@ function recargarCuotas(cantidadCuotas){
 }
 
 //Calculo del importe de cada cuota
-function calcularValorCuota(importe, cuotasRecargo, cuotas){
-    let importeDeCuota = ((importe * cuotasRecargo) / cuotas)
-    return importeDeCuota.toFixed(2)
-}
+const calcularValorCuota = (importe, cuotasRecargo, cuotas) => ((importe * cuotasRecargo) / cuotas)
 
 //Convierte el factor de recargo en porcentaje
-function calcularPorcentaje(cuotasConRecargo){
-    let valorPorcentaje = ((cuotasConRecargo - 1) * 100)
-    return valorPorcentaje.toFixed(2)
-}
-
+const calcularPorcentaje = (cuotasConRecargo) => ((cuotasConRecargo - 1) * 100)
+    
 //Hace el calculo final del pago con tarjeta
 function calculoPagoConTarjeta(empresa, importe){
     let cuotasRecargo
@@ -45,7 +39,7 @@ function calculoPagoConTarjeta(empresa, importe){
     importeCuota = calcularValorCuota (importe, cuotasRecargo, cuotasEmpresa)
     porcentaje = calcularPorcentaje(cuotasRecargo)
     costoTotalFinanciado = calcularCostoTotal (importe, cuotasRecargo)
-    mensaje = "Por su compra de $ " + importe + " con " + empresa + ", abonara un recargo de " + porcentaje + " %: \n" + cuotasEmpresa + " cuotas de $ " + importeCuota +  "\nCosto total financiado: $ " + costoTotalFinanciado.toFixed(2)
+    mensaje = "Por su compra de $ " + importe + " con " + empresa + ", abonara un recargo de " + porcentaje.toFixed(2) + " %: \n" + cuotasEmpresa + " cuotas de $ " + importeCuota.toFixed(2) +  "\nCosto total financiado: $ " + costoTotalFinanciado.toFixed(2)
     return mensaje 
 }
 
@@ -108,9 +102,6 @@ catalogo.sort((a, b) => b.precio - a.precio)
 console.log(catalogo)
 }
 
-
-
-
 //Filtrado por origen
 const filtrarOrigen = () => {
 let origenValido = false
@@ -128,7 +119,7 @@ do {
     }  while (origenValido == false)
 }
 
-//Búsqueda de producto por nombre, muestra el precio
+//Busqueda de producto por nombre, muestra el precio
 const buscarProducto = () => {
 let busqueda = prompt("Que producto está buscando?")
 const encontrado = catalogo.find(catalogo => catalogo.nombre == busqueda)
@@ -139,6 +130,7 @@ if (encontrado) {
     }
 }
 
+//Ordena por precio ascendente o descendente
 const ordenarPorPrecio = () => {
 let ordenValido = false
 do {
@@ -203,9 +195,9 @@ while(pagar) {
 }
 
 //Menu principal
-let menuPrincipal = parseInt(prompt("Bienvenido! Ingrese \n1 para ver catalogo \n2 para pagar \n3 para filtrar por origen \n4 para ordenar por precio \n5 para buscar producto \n7 para salir"))
+let menuPrincipal = parseInt(prompt("Bienvenido! Ingrese \n1 para ver catalogo \n2 para pagar \n3 para filtrar por origen \n4 para ordenar por precio \n5 para buscar producto \n6 para salir"))
 
-while(menuPrincipal !== 7) {
+while(menuPrincipal !== 6) {
     switch(menuPrincipal) {
         case 1:
             verCatalogo()
@@ -222,10 +214,8 @@ while(menuPrincipal !== 7) {
         case 5:
             buscarProducto()
             break
-
-        
         default:
             alert("Opcion incorrecta")
     }
-    menuPrincipal = parseInt(prompt("Ingrese \n1 para ver catalogo \n2 para pagar \n3 para ver productos nacionales \n4 para ver productos importados \n5 para buscar producto \n7 para salir"))
+    menuPrincipal = parseInt(prompt("Ingrese \n1 para ver catalogo \n2 para pagar \n3 para filtrar por origen \n4 para ordenar por precio \n5 para buscar producto \n6 para salir"))
 }
