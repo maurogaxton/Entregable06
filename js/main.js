@@ -79,7 +79,6 @@ const catalogo = [
 
 //Para ver Catalogo de productos,se recorre con forEach
 const verCatalogo = () => {
-    
     catalogo.forEach((elemento) =>
     console.log(elemento.nombre + ", Precio: $ " + elemento.precio)
     )
@@ -97,6 +96,38 @@ const importados = catalogo.filter(catalogo => catalogo.origen !== "Argentina")
 console.log(importados)
 }
 
+// ordenar de manera ascendente
+const ordenAscendente = () => {
+catalogo.sort((a, b) => a.precio - b.precio)
+console.log(catalogo)
+}
+
+// ordenar de manera decendente
+const ordenDescendente = () => {
+catalogo.sort((a, b) => b.precio - a.precio)
+console.log(catalogo)
+}
+
+
+
+
+//Filtrado por origen
+const filtrarOrigen = () => {
+let origenValido = false
+do {
+    let busquedaOrigen = prompt("Listar producto por origen: nacional o importado").toLowerCase()
+        if (busquedaOrigen == "nacional"){
+            filtrarNacionales()
+            origenValido = true
+        } else if (busquedaOrigen == "importado") {
+            filtrarImportados()
+            origenValido = true
+        } else {
+            console.log("Error de tipeo. Escriba nacional o importado") 
+        }
+    }  while (origenValido == false)
+}
+
 //Búsqueda de producto por nombre, muestra el precio
 const buscarProducto = () => {
 let busqueda = prompt("Que producto está buscando?")
@@ -108,8 +139,21 @@ if (encontrado) {
     }
 }
 
-
-
+const ordenarPorPrecio = () => {
+let ordenValido = false
+do {
+    let opcionOrden = prompt("Listar producto por precio: ascendente o descendente").toLowerCase()
+        if (opcionOrden == "ascendente"){
+            ordenAscendente()
+            ordenValido = true
+        } else if (opcionOrden == "descendente") {
+            ordenDescendente()
+            ordenValido = true
+        } else {
+            console.log("Error de tipeo. Escriba ascendente o descendente") 
+        }
+    }  while (ordenValido == false)
+}
 
 // Para elegir metodo de pago
 const pagarCompra = () => {
@@ -159,7 +203,7 @@ while(pagar) {
 }
 
 //Menu principal
-let menuPrincipal = parseInt(prompt("Bienvenido! Ingrese \n1 para ver catalogo \n2 para pagar \n3 para ver productos nacionales \n4 para ver productos importados \n5 para buscar producto \n7 para salir"))
+let menuPrincipal = parseInt(prompt("Bienvenido! Ingrese \n1 para ver catalogo \n2 para pagar \n3 para filtrar por origen \n4 para ordenar por precio \n5 para buscar producto \n7 para salir"))
 
 while(menuPrincipal !== 7) {
     switch(menuPrincipal) {
@@ -170,10 +214,10 @@ while(menuPrincipal !== 7) {
             pagarCompra()
             break
         case 3:
-            filtrarNacionales()
+            filtrarOrigen()
             break
         case 4:
-            filtrarImportados()
+            ordenarPorPrecio()
             break
         case 5:
             buscarProducto()
